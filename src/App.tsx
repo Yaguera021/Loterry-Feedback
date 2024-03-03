@@ -5,7 +5,7 @@ import './components/style/Form.css'
 function App() {
 
   return (
-    <div className='div-main'>
+    <div>
       <Header />
       <Form />
     </div>
