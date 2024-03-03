@@ -37,18 +37,21 @@ const Form: React.FC = () => {
 
   const handleChange = (event: React.ChangeEvent<HTMLTextAreaElement>) => {
     const { value } = event.target;
+    console.log(value);
+
     if (value.length <= maxLength) {
       setComment(value);
     }
   };
-  // const cardRef = useRef<HTMLDivElement | null>(null);
+
   const flipCard = () => {
     setFlipped(!flipped);
   };
-  
 
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
+    console.log('ENVIOU');
+    
 
     const novoCliente = {
       nome: nome,
@@ -56,6 +59,7 @@ const Form: React.FC = () => {
       atendimento: atendimento,
       agilidade: agilidade,
       ambiente: ambiente,
+      comentario: comment,
     };
 
     try {
@@ -69,6 +73,7 @@ const Form: React.FC = () => {
       setAtendimento(0);
       setAgilidade(0);
       setAmbiente(0);
+      setComment('');
 
       console.log('Cliente enviado com sucesso:', response.data);
     } catch (error) {
@@ -81,7 +86,7 @@ const Form: React.FC = () => {
       <div className='card-inner'>
         <div className='card-front'>
           <form className='forms' onSubmit={handleSubmit}>
-          <h4 className='title'>Deixe sua avaliação!</h4>
+            <h4 className='title'>Deixe sua avaliação!</h4>
             <div className='input-group'>
               <div className='field'>
                 <img src={User} alt='user icon' className='icons' />
@@ -120,7 +125,7 @@ const Form: React.FC = () => {
                 <Stars name='ambiente' onChange={handleAmbienteChange} />
               </label>
             </div>
-            <div>
+            <div  className='btn-container'>
               <button className='btn' type='button' onClick={flipCard}>
                 Comente algo
               </button>
@@ -131,21 +136,23 @@ const Form: React.FC = () => {
           </form>
         </div>
         <div className='card-back'>
+          <form className='forms' onSubmit={handleSubmit}>
           <h4 className='title'>Deixe sua avaliação!</h4>
           <div className='input-text'>
-        <textarea
-          className='text-area'
-          placeholder='Max 300 caracteres...'
-          value={comment}
-          onChange={handleChange}
-        ></textarea>
-      </div>
-      <div className='caracteres'>
-        <p>{maxLength - comment.length} caracteres restantes</p>
-        <button className='btn' type='submit'>
-          Enviar
-        </button>
-      </div>
+            <textarea
+              className='text-area'
+              placeholder='Max 300 caracteres...'
+              value={comment}
+              onChange={handleChange}
+            ></textarea>
+          </div>
+          <div className='caracteres'>
+            <p>{maxLength - comment.length} caracteres restantes</p>
+            <button className='btn' type='submit'>
+              Enviar
+            </button>
+          </div>
+        </form>
         </div>
       </div>
     </div>
