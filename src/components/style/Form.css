@@ -12,8 +12,8 @@
   min-width: 320px;
   padding: 1em;
   margin-top: 4em;
-  box-shadow: 0 8px 24px 0 rgb(0 0 0 / 20%);
   font-family: 'jost', sans-serif;
+  box-shadow: rgb(0,0,0,0.7) 5px 10px 50px ,rgb(0,0,0,0.7) -5px 0px 250px;
 }
 
 .card h4 {
@@ -147,4 +147,9 @@
   align-items: center;
   justify-content: center;
   width: 100%;
+}
+
+.icons {
+  width: 16px;
+  color: white;
 }

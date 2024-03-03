@@ -11,20 +11,20 @@ const Form: React.FC = () => {
       <form className='forms'>
         <div className='input-group'>
           <div className='field'>
-            <img src={User} alt='cellphone' width={20} />
+            <img src={User} alt='user icon' className='icons'/>
             <input
               id='nome'
-              placeholder='Digite seu nome'
+              placeholder='nome'
               className='input-field'
               name='nome'
               type='text'
             />
           </div>
           <div className='field'>
-            <img src={Smartphone} alt='cellphone' width={20} />
+            <img src={Smartphone} alt='cellphone icon' className='icons'/>
             <input
               id='telefone'
-              placeholder='Digite seu telefone (XX)XXXXX-XXXX'
+              placeholder='(xx)xxxxx-xxxx'
               className='input-field'
               name='telefone'
               type='text'
