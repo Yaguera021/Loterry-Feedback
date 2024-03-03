@@ -16,14 +16,12 @@
 }
 
 .header-title {
-  font-family: "Jost", sans-serif;
   font-weight: 800;
   font-style: italic;
   font-size: 42px;
 }
 
 .montserrat-title {
-  font-family: "Montserrat", sans-serif;
   font-optical-sizing: auto;
   font-weight: 600;
   font-style: normal;
