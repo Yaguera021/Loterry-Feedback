@@ -10,3 +10,15 @@
   box-sizing: border-box;
 }
 
+.container {
+  height: 100%;
+  background-image: url(/src/images/bgCaixa.jpg);
+  background-position: center;
+  background-size: cover;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+

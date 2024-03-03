@@ -1,22 +1,27 @@
 .card {
-  width: 100%;
+  width: 80%;
   padding: 1.9rem 1.2rem;
   text-align: center;
-  background: #2a2b38;
+  background-color: rgba(17, 24, 39, 1);
   align-items: center;
   justify-content: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   border-radius: 15px;
+  min-width: 320px;
+  padding: 1em;
+  margin-top: 4em;
   box-shadow: 0 8px 24px 0 rgb(0 0 0 / 20%);
+  font-family: 'jost', sans-serif;
 }
 
 .card h4 {
-  background:#2a2b38;
-  color: #db700c;
-  margin-bottom: 1.5rem;
+  background-color: rgba(17, 24, 39, 1);
+  color: white;
+  margin-top: 1rem;
 }
 
-
-/*Inputs*/
 .field {
   margin-top: 0.5rem;
   display: flex;
@@ -26,6 +31,19 @@
   background-color: #1f2029;
   border-radius: 4px;
   padding: 0.5em 1em;
+  height: 40px;
+  width: 100%;
+}
+
+.input-group {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5em;
+  border-radius: 4px;
+  padding: 0.5em 1em;
+
 }
 
 .input-icon {
@@ -42,7 +60,6 @@
   color: #d3d3d3;
 }
 
-/*Text*/
 .title {
   margin-bottom: 1rem;
   font-size: 1.5em;
@@ -50,18 +67,16 @@
   color: #f5f5f5;
 }
 
-/*Buttons*/
 .btn {
   margin: 1rem;
   border: none;
-  border-radius: 4px;
-  font-weight: bold;
+  border-radius: 3px;
   font-size: 0.8em;
   text-transform: uppercase;
   padding: 0.6em 1.2em;
-  background-color: #ffeba7;
-  color: #5e6681;
-  box-shadow: 0 8px 24px 0 rgb(255 235 167 / 20%);
+  background-color: #f7941e;
+  color: white;
+  /* box-shadow: 0 8px 24px 0 rgb(255 235 167 / 20%); */
   transition: all 0.3s ease-in-out;
   cursor: pointer;
 }
@@ -73,7 +88,6 @@
   transition: color 0.3s ease-out;
 }
 
-/*Hover & focus*/
 .field input:focus::placeholder {
   opacity: 0;
   transition: opacity 0.3s;
@@ -87,4 +101,50 @@
 
 .btn-link:hover {
   color: #ffeba7;
+}
+
+.rating {
+  display: inline-block;
+}
+
+.rating input {
+  display: none;
+}
+
+.rating label {
+  float: right;
+  cursor: pointer;
+  color: #ccc;
+  transition: color 0.3s;
+}
+
+.rating label:before {
+  content: '\2605';
+  font-size: 30px;
+}
+
+.rating input:checked ~ label,
+.rating label:hover,
+.rating label:hover ~ label {
+  color: #6f00ff;
+  transition: color 0.3s;
+}
+
+.star-evaluation {
+  color: white;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  padding: 0.4rem;
+  justify-content: space-between;
+  width: 90%;
+}
+
+.stars {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
 }
