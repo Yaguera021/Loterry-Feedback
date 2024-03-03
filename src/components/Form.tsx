@@ -11,6 +11,9 @@ const Form: React.FC = () => {
   const [atendimento, setAtendimento] = useState(0);
   const [agilidade, setAgilidade] = useState<number>(0);
   const [ambiente, setAmbiente] = useState<number>(0);
+  const [comment, setComment] = useState('');
+  const maxLength = 300;
+  const [flipped, setFlipped] = useState(false);
 
   const handleNomeChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setNome(event.target.value);
@@ -32,6 +35,18 @@ const Form: React.FC = () => {
     setAmbiente(value);
   };
 
+  const handleChange = (event: React.ChangeEvent<HTMLTextAreaElement>) => {
+    const { value } = event.target;
+    if (value.length <= maxLength) {
+      setComment(value);
+    }
+  };
+  // const cardRef = useRef<HTMLDivElement | null>(null);
+  const flipCard = () => {
+    setFlipped(!flipped);
+  };
+  
+
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
 
@@ -44,7 +59,10 @@ const Form: React.FC = () => {
     };
 
     try {
-      const response = await axios.post('http://localhost:3006/api/clientes', novoCliente);
+      const response = await axios.post(
+        'http://localhost:3006/api/clientes',
+        novoCliente
+      );
 
       setNome('');
       setTelefone('');
@@ -59,56 +77,77 @@ const Form: React.FC = () => {
   };
 
   return (
-    <div className='card'>
-      <h4 className='title'>Deixe sua avaliação!</h4>
-      <form className='forms' onSubmit={handleSubmit}>
-        <div className='input-group'>
-          <div className='field'>
-            <img src={User} alt='user icon' className='icons' />
-            <input
-              id='nome'
-              placeholder='nome'
-              className='input-field'
-              name='nome'
-              type='text'
-              onChange={handleNomeChange}
-            />
-          </div>
-          <div className='field'>
-            <img src={Smartphone} alt='cellphone icon' className='icons' />
-            <input
-              id='telefone'
-              placeholder='(xx)xxxxx-xxxx'
-              className='input-field'
-              name='telefone'
-              type='text'
-              onChange={handleTelefoneChange}
-            />
-          </div>
+    <div className={`card ${flipped ? 'flipped' : ''}`}>
+      <div className='card-inner'>
+        <div className='card-front'>
+          <form className='forms' onSubmit={handleSubmit}>
+          <h4 className='title'>Deixe sua avaliação!</h4>
+            <div className='input-group'>
+              <div className='field'>
+                <img src={User} alt='user icon' className='icons' />
+                <input
+                  id='nome'
+                  placeholder='nome'
+                  className='input-field'
+                  name='nome'
+                  type='text'
+                  onChange={handleNomeChange}
+                />
+              </div>
+              <div className='field'>
+                <img src={Smartphone} alt='cellphone icon' className='icons' />
+                <input
+                  id='telefone'
+                  placeholder='(xx)xxxxx-xxxx'
+                  className='input-field'
+                  name='telefone'
+                  type='text'
+                  onChange={handleTelefoneChange}
+                />
+              </div>
+            </div>
+            <div className='stars'>
+              <label htmlFor='atendimento' className='star-evaluation'>
+                Atendimento
+                <Stars name='atendimento' onChange={handleAtendimentoChange} />
+              </label>
+              <label htmlFor='agilidade' className='star-evaluation'>
+                Agilidade
+                <Stars name='agilidade' onChange={handleAgilidadeChange} />
+              </label>
+              <label htmlFor='ambiente' className='star-evaluation'>
+                Ambiente
+                <Stars name='ambiente' onChange={handleAmbienteChange} />
+              </label>
+            </div>
+            <div>
+              <button className='btn' type='button' onClick={flipCard}>
+                Comente algo
+              </button>
+              <button className='btn' type='submit'>
+                Enviar
+              </button>
+            </div>
+          </form>
         </div>
-        <div className='stars'>
-          <label htmlFor='atendimento' className='star-evaluation'>
-            Atendimento
-            <Stars name='atendimento' onChange={handleAtendimentoChange} />
-          </label>
-          <label htmlFor='agilidade' className='star-evaluation'>
-            Agilidade
-            <Stars name='agilidade' onChange={handleAgilidadeChange} />
-          </label>
-          <label htmlFor='ambiente' className='star-evaluation'>
-            Ambiente
-            <Stars name='ambiente' onChange={handleAmbienteChange} />
-          </label>
+        <div className='card-back'>
+          <h4 className='title'>Deixe sua avaliação!</h4>
+          <div className='input-text'>
+        <textarea
+          className='text-area'
+          placeholder='Max 300 caracteres...'
+          value={comment}
+          onChange={handleChange}
+        ></textarea>
+      </div>
+      <div className='caracteres'>
+        <p>{maxLength - comment.length} caracteres restantes</p>
+        <button className='btn' type='submit'>
+          Enviar
+        </button>
+      </div>
         </div>
-        <div>
-          <button className='btn' type='submit'>
-            Comente algo
-          </button>
-          <button className='btn' type='submit'>
-            Enviar
-          </button>
-        </div>
-      </form>
+      </div>
     </div>
   );
 };
