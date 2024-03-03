@@ -5,7 +5,11 @@ import User from '../images/user.svg';
 import './style/Form.css';
 import Stars from './Stars';
 
-const Form: React.FC = () => {
+interface FormProps extends React.HTMLProps<HTMLDivElement> {
+  onButtonClick: () => void;
+}
+
+const Form: React.FC<FormProps> = ({ onButtonClick }) => {
   const [nome, setNome] = useState('');
   const [telefone, setTelefone] = useState('');
   const [atendimento, setAtendimento] = useState(0);
@@ -50,7 +54,6 @@ const Form: React.FC = () => {
 
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    console.log('ENVIOU');
     
 
     const novoCliente = {
@@ -61,19 +64,22 @@ const Form: React.FC = () => {
       ambiente: ambiente,
       comentario: comment,
     };
-
+    
+    
     try {
       const response = await axios.post(
         'http://localhost:3006/api/clientes',
         novoCliente
-      );
-
-      setNome('');
-      setTelefone('');
-      setAtendimento(0);
-      setAgilidade(0);
-      setAmbiente(0);
-      setComment('');
+        );
+        
+        setNome('');
+        setTelefone('');
+        setAtendimento(0);
+        setAgilidade(0);
+        setAmbiente(0);
+        setComment('');
+        
+        
 
       console.log('Cliente enviado com sucesso:', response.data);
     } catch (error) {
@@ -129,7 +135,7 @@ const Form: React.FC = () => {
               <button className='btn' type='button' onClick={flipCard}>
                 Comente algo
               </button>
-              <button className='btn' type='submit'>
+              <button className='btn' type='submit' onClick={onButtonClick}>
                 Enviar
               </button>
             </div>
@@ -148,7 +154,7 @@ const Form: React.FC = () => {
           </div>
           <div className='caracteres'>
             <p>{maxLength - comment.length} caracteres restantes</p>
-            <button className='btn' type='submit'>
+            <button className='btn' type='submit' onClick={onButtonClick}>
               Enviar
             </button>
           </div>
