@@ -125,15 +125,15 @@ const Form: React.FC<FormProps> = ({ onButtonClick }) => {
               </div>
             </div>
             <div className='stars'>
-              <label htmlFor='atendimento' className='star-evaluation'>
+              <label htmlFor='atendimento' id='atendimento' className='star-evaluation'>
                 Atendimento
                 <Stars name='atendimento' onChange={handleAtendimentoChange} />
               </label>
-              <label htmlFor='agilidade' className='star-evaluation'>
+              <label htmlFor='agilidade' id='agilidade' className='star-evaluation'>
                 Agilidade
                 <Stars name='agilidade' onChange={handleAgilidadeChange} />
               </label>
-              <label htmlFor='ambiente' className='star-evaluation'>
+              <label htmlFor='ambiente' id='ambiente' className='star-evaluation'>
                 Ambiente
                 <Stars name='ambiente' onChange={handleAmbienteChange} />
               </label>

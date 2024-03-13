@@ -9,20 +9,23 @@ const Stars: React.FC<StarsProps> = ({ name, onChange }) => {
     onChange(Number(value));
   };
 
-  return (
-    <div className='rating'>
-      <input value='5' name={name} id={`${name}-star5`} type='radio' onChange={() => handleRatingChange('5')} />
-      <label htmlFor={`${name}-star5`}></label>
-      <input value='4' name={name} id={`${name}-star4`} type='radio' onChange={() => handleRatingChange('4')} />
-      <label htmlFor={`${name}-star4`}></label>
-      <input value='3' name={name} id={`${name}-star3`} type='radio' onChange={() => handleRatingChange('3')} />
-      <label htmlFor={`${name}-star3`}></label>
-      <input value='2' name={name} id={`${name}-star2`} type='radio' onChange={() => handleRatingChange('2')} />
-      <label htmlFor={`${name}-star2`}></label>
-      <input value='1' name={name} id={`${name}-star1`} type='radio' onChange={() => handleRatingChange('1')} />
-      <label htmlFor={`${name}-star1`}></label>
-    </div>
-  );
+return (
+  <div className='rating'>
+    {[5, 4, 3, 2, 1].map((value) => (
+      <React.Fragment key={`${name}-star${value}`}>
+        <input
+          value={value}
+          name={name}
+          id={`${name}-star${value}`}
+          type='radio'
+          onChange={() => handleRatingChange(value.toString())}
+        />
+        <label htmlFor={`${name}-star${value}`}></label>
+      </React.Fragment>
+    ))}
+  </div>
+    );
 };
 
 export default Stars;
+
