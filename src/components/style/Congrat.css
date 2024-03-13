@@ -4,6 +4,8 @@
   height: 50% !important;
   margin-top: 4em;
   max-width: 350px;
+  display: flex;
+    justify-content: center;
 }
 
 .card-congrat {

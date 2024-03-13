@@ -4,6 +4,7 @@ import Smartphone from '../images/smartphone.svg';
 import User from '../images/user.svg';
 import './style/Form.css';
 import Stars from './Stars';
+import { useCookies } from 'react-cookie';
 
 interface FormProps extends React.HTMLProps<HTMLDivElement> {
   onButtonClick: () => void;
@@ -18,6 +19,7 @@ const Form: React.FC<FormProps> = ({ onButtonClick }) => {
   const [comment, setComment] = useState('');
   const maxLength = 300;
   const [flipped, setFlipped] = useState(false);
+  const [cookies] = useCookies(['XSRF-TOKEN']);
 
   const handleNomeChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setNome(event.target.value);
@@ -54,6 +56,11 @@ const Form: React.FC<FormProps> = ({ onButtonClick }) => {
 
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
+
+    if (!nome || atendimento === 0 || agilidade === 0 || ambiente === 0 ) {
+      alert('Por favor, deixe sua avaliação antes de enviar.');
+      return;
+    }
     
 
     const novoCliente = {
@@ -79,7 +86,7 @@ const Form: React.FC<FormProps> = ({ onButtonClick }) => {
         setAmbiente(0);
         setComment('');
         
-        
+        onButtonClick()
 
       console.log('Cliente enviado com sucesso:', response.data);
     } catch (error) {
@@ -131,11 +138,12 @@ const Form: React.FC<FormProps> = ({ onButtonClick }) => {
                 <Stars name='ambiente' onChange={handleAmbienteChange} />
               </label>
             </div>
+            <input type="hidden" name="_csrf" value={cookies['XSRF-TOKEN']} />
             <div  className='btn-container'>
               <button className='btn' type='button' onClick={flipCard}>
                 Comente algo
               </button>
-              <button className='btn' type='submit' onClick={onButtonClick}>
+              <button className='btn' type='submit' >
                 Enviar
               </button>
             </div>
@@ -154,7 +162,7 @@ const Form: React.FC<FormProps> = ({ onButtonClick }) => {
           </div>
           <div className='caracteres'>
             <p>{maxLength - comment.length} caracteres restantes</p>
-            <button className='btn' type='submit' onClick={onButtonClick}>
+            <button className='btn' type='submit'>
               Enviar
             </button>
           </div>
