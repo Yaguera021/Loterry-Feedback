@@ -6,7 +6,7 @@ import './style/Form.css';
 import Stars from './Stars';
 
 interface FormProps extends React.HTMLProps<HTMLDivElement> {
-  onButtonClick: () => void;
+  showCongrat: () => void;
 }
 
 interface ClienteAspect {
@@ -24,7 +24,7 @@ interface Cliente {
   comentario: string;
 }
 
-const Form: React.FC<FormProps> = () => {
+const Form: React.FC<FormProps> = ({ showCongrat }) => {
   const [cliente, setCliente] = useState<Cliente>({
     nome: '',
     telefone: '',
@@ -44,10 +44,15 @@ const Form: React.FC<FormProps> = () => {
     }));
   };
 
-  const handleChange = (event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-    const { name, value } = event.target;
-    handleInputChange(name, value);
-  };
+      const handleChange = (event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+      const { name, value } = event.target;
+      if (name === 'telefone') {
+        const formattedValue = value.replace(/\D/g, '').replace(/(\d{2})(\d{5})(\d{4})/, '($1)$2-$3');
+        handleInputChange(name, formattedValue);
+      } else {
+        handleInputChange(name, value);
+      }
+    };
 
   const flipCard = () => {
     setFlipped(!flipped);
@@ -56,19 +61,23 @@ const Form: React.FC<FormProps> = () => {
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
 
-    console.log('Dados do cliente:', cliente);
+      const hasResponded = localStorage.getItem('hasResponded');
+        if (hasResponded) {
+          alert('Você já respondeu ao formulário.');
+          return;
+      }
     
     const { nome, atendimento, agilidade, ambiente } = cliente;
-
+    
     if (!nome || !atendimento || !agilidade || !ambiente ) {
       alert('Por favor, deixe sua avaliação antes de enviar.');
       return;
     }
-
+    
     const headers = {
       'Content-Type': 'application/json',
     };
-
+    
     try {
       const response = await axios.post('http://localhost:3006/api/clientes', JSON.stringify(cliente), {headers});
       setCliente({ ...cliente, comentario: '' });
@@ -76,6 +85,8 @@ const Form: React.FC<FormProps> = () => {
     } catch (error) {
       console.error('Erro ao enviar requisição:', error);
     }
+    localStorage.setItem('hasResponded', 'true');
+    showCongrat();
   };
 
   return (
