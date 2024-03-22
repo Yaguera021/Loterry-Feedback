@@ -16,3 +16,17 @@ Por favor, sinta-se à vontade para compartilhar suas experiências conosco. Sua
 Obrigado por dedicar um momento para nos fornecer seu feedback. Estamos ansiosos para ouvir o que você tem a dizer!
 
 Developers: Yago Cruz 👨‍💻 & Iesley Ferreira 👨‍💻 - ⚛️
+
+📸 👇
+
+<details>
+  <summary><b>Project Illustration</b></summary>
+  <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px;">
+    <img src="src/images/app1.png" alt="Project Screenshot" style="max-width: 100%; height: auto;">
+    <img src="src/images/app2.png" alt="Project Screenshot" style="max-width: 100%; height: auto;">
+    <img src="src/images/app3.png" alt="Project Screenshot" style="max-width: 100%; height: auto;">
+    <img src="src/images/app4.png" alt="Project Screenshot" style="max-width: 100%; height: auto;">
+    <img src="src/images/app5.png" alt="Project Screenshot" style="max-width: 100%; height: auto;">
+  </div>
+</details><br />
+
