@@ -31,6 +31,7 @@
   justify-content: center;
   gap: 0.8em;
   border-radius: 4px;
+  width: 88%;
 }
 
 .input-icon {
@@ -44,6 +45,7 @@
   border: none;
   outline: none;
   width: 100%;
+  font-size: 1rem;
   color: #d3d3d3;
 }
 
@@ -59,13 +61,14 @@
   border: none;
   border-radius: 3px;
   font-size: 0.8em;
-  text-transform: uppercase;
   padding: 0.6em 1.2em;
   background-color: #f7941e;
   color: white;
-  /* box-shadow: 0 8px 24px 0 rgb(255 235 167 / 20%); */
+  box-shadow: 0 8px 24px 0 rgb(255 235 167 / 10%);
   transition: all 0.3s ease-in-out;
   cursor: pointer;
+  text-transform: uppercase;
+  font-weight: 700;
 }
 
 .btn-link {
@@ -106,7 +109,7 @@
 }
 
 .rating label:before {
-  content: '\2605';
+  content: "\2605";
   font-size: 25px;
 }
 
@@ -126,6 +129,10 @@
   padding: 0.4rem;
   justify-content: space-between;
   width: 90%;
+}
+
+.star-evaluation {
+  font-size: 1.1rem;
 }
 
 .stars {
@@ -155,11 +162,10 @@
   transform-style: preserve-3d;
   transition: transform 0.999s;
   border-radius: 15px;
-  font-family: 'jost', sans-serif;
+  font-family: "jost", sans-serif;
 }
 
-.flipped
-.card-inner {
+.flipped .card-inner {
   transform: rotateY(180deg);
 }
 
@@ -220,7 +226,7 @@
   color: #f5f5f5;
   font-size: 0.8em;
   margin-top: 0.5em;
-  font-family: 'jost', sans-serif;
+  font-family: "jost", sans-serif;
 }
 
 .field input:focus::placeholder {

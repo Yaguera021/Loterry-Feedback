@@ -5,41 +5,34 @@
   margin-top: 4em;
   max-width: 350px;
   display: flex;
-    justify-content: center;
+  justify-content: center;
 }
 
 .card-congrat {
+  font-family: "jost", sans-serif;
   height: 100%;
   display: flex;
-  color: white;
+  color: rgb(255, 255, 255);
   flex-direction: column;
   align-items: center;
   justify-content: center;
   position: relative;
-  background-color: rgba(17, 24, 39, 1);
+  background-color: rgba(73, 74, 75, 0.486);
   box-shadow: rgb(0, 0, 0, 0.7) 5px 10px 50px, rgb(0, 0, 0, 0.7) -5px 0px 250px;
   width: 90%;
-  justify-content: space-around;
   padding: 1.9rem 1.2rem;
   transform-style: preserve-3d;
   transition: transform 0.999s;
   border-radius: 15px;
-  font-family: 'jost', sans-serif;
-  font-size: 0.9rem;
-  text-align: justify;
+  gap: 30px;
   margin: 0 auto;
+  font-size: 1rem;
 }
 
 .card-congrat h1 {
-  font-size: 1rem;
+  font-size: 1.4rem;
   font-weight: 700;
   text-align: center;
-  /* margin-bottom: 1.5rem; */
-}
-
-.card-congrat p {
-  font-size: 0.9rem;
-  /* margin-bottom: 1.5rem; */
 }
 
 .card-congrat span {

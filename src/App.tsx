@@ -14,7 +14,7 @@ function App() {
   return (
     <div className='container'>
       <Header />
-      {showCongrat ? <Congrat /> : <Form showCongrat={handleButtonClick} />}
+      {showCongrat ? <Congrat /> : <Form showCongratComponent={handleButtonClick} />}
     </div>
   );
 }

@@ -1,12 +1,12 @@
-import React, { useState } from 'react';
-import axios from 'axios';
-import Smartphone from '../images/smartphone.svg';
-import User from '../images/user.svg';
-import './style/Form.css';
-import Stars from './Stars';
+import axios from "axios";
+import React, { useState } from "react";
+import Smartphone from "../images/smartphone.svg";
+import User from "../images/user.svg";
+import Stars from "./Stars";
+import "./style/Form.css";
 
 interface FormProps extends React.HTMLProps<HTMLDivElement> {
-  showCongrat: () => void;
+  showCongratComponent: () => void;
 }
 
 interface ClienteAspect {
@@ -24,14 +24,14 @@ interface Cliente {
   comentario: string;
 }
 
-const Form: React.FC<FormProps> = ({ showCongrat }) => {
+const Form: React.FC<FormProps> = ({ showCongratComponent }) => {
   const [cliente, setCliente] = useState<Cliente>({
-    nome: '',
-    telefone: '',
+    nome: "",
+    telefone: "",
     atendimento: 0,
     agilidade: 0,
     ambiente: 0,
-    comentario: '',
+    comentario: "",
   });
 
   const maxLength = 300;
@@ -44,15 +44,19 @@ const Form: React.FC<FormProps> = ({ showCongrat }) => {
     }));
   };
 
-      const handleChange = (event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-      const { name, value } = event.target;
-      if (name === 'telefone') {
-        const formattedValue = value.replace(/\D/g, '').replace(/(\d{2})(\d{5})(\d{4})/, '($1)$2-$3');
-        handleInputChange(name, formattedValue);
-      } else {
-        handleInputChange(name, value);
-      }
-    };
+  const handleChange = (
+    event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+  ) => {
+    const { name, value } = event.target;
+    if (name === "telefone") {
+      const formattedValue = value
+        .replace(/\D/g, "")
+        .replace(/(\d{2})(\d{5})(\d{4})/, "($1)$2-$3");
+      handleInputChange(name, formattedValue);
+    } else {
+      handleInputChange(name, value);
+    }
+  };
 
   const flipCard = () => {
     setFlipped(!flipped);
@@ -61,36 +65,40 @@ const Form: React.FC<FormProps> = ({ showCongrat }) => {
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
 
-      const hasResponded = localStorage.getItem('hasResponded');
-        if (hasResponded) {
-          alert('Você já respondeu ao formulário.');
-          return;
-      }
-    
-    const { nome, atendimento, agilidade, ambiente } = cliente;
-    
-    if (!nome || !atendimento || !agilidade || !ambiente ) {
-      alert('Por favor, deixe sua avaliação antes de enviar.');
+    const hasResponded = localStorage.getItem("hasResponded");
+    if (hasResponded) {
+      alert("Você já respondeu ao formulário.");
       return;
     }
-    
-    const headers = {
-      'Content-Type': 'application/json',
-    };
-    
-    try {
-      const response = await axios.post('http://localhost:3006/api/clientes', JSON.stringify(cliente), {headers});
-      setCliente({ ...cliente, comentario: '' });
-      console.log('Cliente enviado com sucesso:', response.data);
-    } catch (error) {
-      console.error('Erro ao enviar requisição:', error);
+
+    const { nome, atendimento, agilidade, ambiente } = cliente;
+
+    if (!nome || !atendimento || !agilidade || !ambiente) {
+      alert("Por favor, deixe sua avaliação antes de enviar.");
+      return;
     }
-    localStorage.setItem('hasResponded', 'true');
-    showCongrat();
+
+    const headers = {
+      "Content-Type": "application/json",
+    };
+
+    try {
+      const response = await axios.post(
+        "http://localhost:3006/api/clientes",
+        JSON.stringify(cliente),
+        { headers }
+      );
+      setCliente({ ...cliente, comentario: "" });
+      console.log("Cliente enviado com sucesso:", response.data);
+    } catch (error) {
+      console.error("Erro ao enviar requisição:", error);
+    }
+    localStorage.setItem("hasResponded", "true");
+    showCongratComponent();
   };
 
   return (
-    <div className={`card ${flipped ? 'flipped' : ''}`}>
+    <div className={`card ${flipped ? "flipped" : ""}`}>
       <div className='card-inner'>
         <div className='card-front'>
           <form className='forms' onSubmit={handleSubmit}>
@@ -112,7 +120,7 @@ const Form: React.FC<FormProps> = ({ showCongrat }) => {
                 <img src={Smartphone} alt='cellphone icon' className='icons' />
                 <input
                   id='telefone'
-                  placeholder='(xx)xxxxx-xxxx'
+                  placeholder='(XX)XXXXX-XXXX'
                   className='input-field'
                   name='telefone'
                   type='text'
@@ -122,7 +130,7 @@ const Form: React.FC<FormProps> = ({ showCongrat }) => {
               </div>
             </div>
 
-            {['atendimento', 'agilidade', 'ambiente'].map((aspect) => (
+            {["atendimento", "agilidade", "ambiente"].map((aspect) => (
               <label key={aspect} htmlFor={aspect} className='star-evaluation'>
                 {aspect}
                 <Stars
@@ -132,7 +140,7 @@ const Form: React.FC<FormProps> = ({ showCongrat }) => {
                 />
               </label>
             ))}
-            
+
             <div className='btn-container'>
               <button className='btn' type='button' onClick={flipCard}>
                 Comente algo
