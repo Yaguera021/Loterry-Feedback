@@ -244,3 +244,10 @@
 .btn-container {
   padding-bottom: 10px;
 }
+
+.btn-enviar:disabled {
+  background-color: #5e6681;
+  color: #ffeba7;
+  box-shadow: 0 8px 24px 0 rgb(16 39 112 / 20%);
+  cursor: not-allowed;
+}

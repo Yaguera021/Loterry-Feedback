@@ -71,9 +71,9 @@ const Form: React.FC<FormProps> = ({ showCongratComponent }) => {
       return;
     }
 
-    const { nome, atendimento, agilidade, ambiente } = cliente;
+    const { atendimento, agilidade, ambiente } = cliente;
 
-    if (!nome || !atendimento || !agilidade || !ambiente) {
+    if (!atendimento || !agilidade || !ambiente) {
       alert("Por favor, deixe sua avaliação antes de enviar.");
       return;
     }
@@ -97,6 +97,8 @@ const Form: React.FC<FormProps> = ({ showCongratComponent }) => {
     showCongratComponent();
   };
 
+  const isDisabled =
+    cliente.agilidade !== 0 && cliente.atendimento !== 0 && cliente.ambiente !== 0;
   return (
     <div className={`card ${flipped ? "flipped" : ""}`}>
       <div className='card-inner'>
@@ -132,7 +134,7 @@ const Form: React.FC<FormProps> = ({ showCongratComponent }) => {
 
             {["atendimento", "agilidade", "ambiente"].map((aspect) => (
               <label key={aspect} htmlFor={aspect} className='star-evaluation'>
-                {aspect}
+                {aspect.charAt(0).toUpperCase() + aspect.slice(1)}
                 <Stars
                   name={aspect}
                   value={cliente[aspect as keyof ClienteAspect]}
@@ -142,10 +144,15 @@ const Form: React.FC<FormProps> = ({ showCongratComponent }) => {
             ))}
 
             <div className='btn-container'>
-              <button className='btn' type='button' onClick={flipCard}>
+              <button
+                disabled={!isDisabled}
+                className='btn btn-enviar'
+                type='button'
+                onClick={flipCard}
+              >
                 Comente algo
               </button>
-              <button className='btn' type='submit'>
+              <button disabled={!isDisabled} className='btn btn-enviar' type='submit'>
                 Enviar
               </button>
             </div>
