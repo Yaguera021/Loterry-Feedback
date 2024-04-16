@@ -108,7 +108,7 @@ const Form: React.FC<FormProps> = ({ showCongratComponent }) => {
                 <img src={User} alt='user icon' className='icons' />
                 <input
                   id='nome'
-                  placeholder='nome'
+                  placeholder='Digite seu nome - Opcional'
                   className='input-field'
                   name='nome'
                   type='text'
@@ -121,6 +121,7 @@ const Form: React.FC<FormProps> = ({ showCongratComponent }) => {
                 <input
                   id='telefone'
                   placeholder='(XX)XXXXX-XXXX'
+                  placeholder='(xx)xxxxx-xxxx - Opcional'
                   className='input-field'
                   name='telefone'
                   type='text'
