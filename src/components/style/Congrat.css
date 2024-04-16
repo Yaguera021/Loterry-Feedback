@@ -1,15 +1,14 @@
 .card {
   max-width: 350px;
   min-width: 320px;
-  height: 50% !important;
-  margin-top: 4em;
+  margin-top: 2rem;
   max-width: 350px;
   display: flex;
   justify-content: center;
 }
 
 .card-congrat {
-  font-family: "jost", sans-serif;
+  font-family: 'jost', sans-serif;
   height: 100%;
   display: flex;
   color: rgb(255, 255, 255);
