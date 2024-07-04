@@ -10,7 +10,6 @@
   background-color: rgba(17, 24, 39, 1);
   color: white;
   margin-top: 1rem;
-  /* margin-bottom: 20px; */
 }
 
 .field {
@@ -110,7 +109,7 @@
 }
 
 .rating label:before {
-  content: '\2605';
+  content: "\2605";
   font-size: 25px;
 }
 
@@ -163,7 +162,7 @@
   transform-style: preserve-3d;
   transition: transform 0.999s;
   border-radius: 15px;
-  font-family: 'jost', sans-serif;
+  font-family: "jost", sans-serif;
 }
 
 .flipped .card-inner {
@@ -184,7 +183,6 @@
 
 .card-front {
   transform: rotateY(0deg);
-  /* height: 98%; */
 }
 
 .card-back {
@@ -229,7 +227,7 @@
   color: #f5f5f5;
   font-size: 0.8em;
   margin-top: 0.5em;
-  font-family: 'jost', sans-serif;
+  font-family: "jost", sans-serif;
 }
 
 .field input:focus::placeholder {
