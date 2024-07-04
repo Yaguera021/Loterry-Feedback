@@ -1,22 +1,8 @@
-import Header from './components/Header'
-import Form from './components/Form'
-import './App.css';
-import { useState } from 'react';
-import Congrat from './components/Congrat';
+import "./App.css";
+import Home from "./pages/Home";
 
 function App() {
-  const [showCongrat, setShowCongrat] = useState(false);
-
-  const handleButtonClick = () => {
-    setShowCongrat(true);
-  };
-
-  return (
-    <div className='container'>
-      <Header />
-      {showCongrat ? <Congrat /> : <Form showCongratComponent={handleButtonClick} />}
-    </div>
-  );
+  return <Home />;
 }
 
 export default App;
